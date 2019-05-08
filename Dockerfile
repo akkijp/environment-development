@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 MAINTAINER rorono <kosuke19952000@gmail.com>
 
-# user
+# env
 ENV USER developer
 ENV HOME /home/${USER}
 ENV SHELL /bin/bash
