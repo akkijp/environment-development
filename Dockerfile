@@ -7,10 +7,10 @@ ENV HOME /home/${USER}
 ENV SHELL /bin/bash
 
 # default locale
-RUN locale-gen en_US.UTF-8  
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
+# RUN locale-gen en_US.UTF-8  
+# ENV LANG en_US.UTF-8  
+# ENV LANGUAGE en_US:en  
+# ENV LC_ALL en_US.UTF-8
 
 # apt update
 RUN apt-get update
@@ -52,9 +52,9 @@ RUN set -x \
     && anyenv install nodenv \
     && exec $SHELL -l
 
-RUN set -x \
-    && eval "$(anyenv init -)" \
-    && rbenv install 2.6.3 \
-    && rbenv global 2.6.3 \
-    && nodenv install -l 12.1.0 \
-    && nodenv global 12.1.0
+# RUN set -x \
+#     && eval "$(anyenv init -)" \
+#     && rbenv install 2.6.3 \
+#     && rbenv global 2.6.3 \
+#     && nodenv install -l 12.1.0 \
+#     && nodenv global 12.1.0
