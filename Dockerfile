@@ -15,8 +15,11 @@ RUN set -x \
     && locale-gen ja_JP.UTF-8
 
 # apt update
-RUN apt-get update
-RUN apt-get install -y sudo
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y sudo \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # add sudo user
 RUN groupadd --gid 1000 ${USER} && \
@@ -26,8 +29,11 @@ RUN groupadd --gid 1000 ${USER} && \
 RUN echo 'Defaults visiblepw'            >> /etc/sudoers
 RUN echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN apt-get update
-RUN apt-get install -y build-essential file gcc make cmake git curl wget ruby vim zsh
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y build-essential cmake file git curl wget ruby vim zsh \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 USER ${USER}
 WORKDIR $HOME
@@ -53,6 +59,12 @@ RUN set -x \
     && anyenv install rbenv \
     && anyenv install nodenv \
     && exec $SHELL -l
+
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
 
 # RUN set -x \
 #     && eval "$(anyenv init -)" \
