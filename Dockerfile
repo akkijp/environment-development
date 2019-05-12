@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER rorono <kosuke19952000@gmail.com>
+LABEL maintainer "rorono <kosuke19952000@gmail.com>"
 
 # env
 ENV USER developer
