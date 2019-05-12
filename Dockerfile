@@ -73,3 +73,13 @@ RUN set -x \
     && rbenv global 2.6.3 \
     && nodenv install 12.1.0 \
     && nodenv global 12.1.0
+
+# ruby package install
+RUN set -x \
+    && eval "$(anyenv init -)" \
+    && gem install rails bundler foreman
+
+# node package install
+RUN set -x \
+    && eval "$(anyenv init -)" \
+    && npm install -g yarn http-server
