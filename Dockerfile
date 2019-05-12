@@ -12,7 +12,8 @@ RUN set -x \
     && apt-get install -y language-pack-ja-base language-pack-ja \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && locale-gen ja_JP.UTF-8
+    && locale-gen ja_JP.UTF-8 \
+    && update-locale LANG=ja_JP.UTF-8
 
 # apt update
 RUN set -x \
