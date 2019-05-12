@@ -52,7 +52,7 @@ RUN set -x \
 ENV PATH $HOME/.anyenv/bin:$PATH
 
 RUN set -x \
-    && echo 'eval "$(anyenv init -)"' >> /etc/profile \
+    && echo 'eval "$(anyenv init -)"' >> $HOME/.bashrc \
     && anyenv install --force-init
 
 RUN set -x \
