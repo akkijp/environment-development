@@ -72,5 +72,5 @@ RUN set -x \
     && eval "$(anyenv init -)" \
     && rbenv install 2.6.3 \
     && rbenv global 2.6.3 \
-    && nodenv install -l 12.1.0 \
+    && nodenv install 12.1.0 \
     && nodenv global 12.1.0
