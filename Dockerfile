@@ -61,10 +61,10 @@ RUN set -x \
     && exec $SHELL -l
 
 RUN set -x \
-    && apt-get update \
-    && apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
+    && sudo apt-get update \
+    && sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
+    && sudo apt-get clean \
+    && sudo rm -rf /var/lib/apt/lists/* \
 
 # RUN set -x \
 #     && eval "$(anyenv init -)" \
