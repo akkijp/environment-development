@@ -68,9 +68,9 @@ RUN set -x \
     && sudo apt-get clean \
     && sudo rm -rf /var/lib/apt/lists/*
 
-# RUN set -x \
-#     && eval "$(anyenv init -)" \
-#     && rbenv install 2.6.3 \
-#     && rbenv global 2.6.3 \
-#     && nodenv install -l 12.1.0 \
-#     && nodenv global 12.1.0
+RUN set -x \
+    && eval "$(anyenv init -)" \
+    && rbenv install 2.6.3 \
+    && rbenv global 2.6.3 \
+    && nodenv install -l 12.1.0 \
+    && nodenv global 12.1.0
