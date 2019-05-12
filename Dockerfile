@@ -59,8 +59,6 @@ RUN set -x \
     && anyenv install rbenv \
     && anyenv install nodenv \
     && exec $SHELL -l
-ENV PATH $HOME/.anyenv/envs/rbenv/bin:$PATH
-ENV PATH $HOME/.anyenv/envs/nodenv/bin:$PATH
 
 RUN set -x \
     && sudo apt-get update \
