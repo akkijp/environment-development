@@ -4,7 +4,7 @@ MAINTAINER rorono <kosuke19952000@gmail.com>
 # env
 ENV USER developer
 ENV HOME /home/${USER}
-ENV SHELL /bin/bash
+SHELL ["/bin/bash", "-c"]
 
 # default locale
 RUN set -x \
@@ -23,7 +23,7 @@ RUN set -x \
 
 # add sudo user
 RUN groupadd --gid 1000 ${USER} && \
-    useradd  --uid 1000 --gid 1000 --groups sudo --create-home --shell /bin/bash ${USER} && \
+    useradd  --uid 1000 --gid 1000 --groups sudo --create-home --shell $SHELL ${USER} && \
     echo "${USER}:P@ssw0rd" | chpasswd
 
 RUN echo 'Defaults visiblepw'            >> /etc/sudoers
@@ -52,7 +52,7 @@ RUN set -x \
 ENV PATH $HOME/.anyenv/bin:$PATH
 
 RUN set -x \
-    && echo 'eval "$(anyenv init -)"' >> $HOME/.bashrc \
+    && echo 'eval "$(anyenv init -)"' >> /etc/profile \
     && anyenv install --force-init
 
 RUN set -x \
@@ -66,7 +66,7 @@ RUN set -x \
     && sudo apt-get update \
     && sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
     && sudo apt-get clean \
-    && sudo rm -rf /var/lib/apt/lists/* \
+    && sudo rm -rf /var/lib/apt/lists/*
 
 # RUN set -x \
 #     && eval "$(anyenv init -)" \
