@@ -87,7 +87,7 @@ RUN set -x \
 
 # rails dependent libs
 RUN set -x \
-    && apt-get update \
-    && apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && sudo apt-get update \
+    && sudo apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
+    && sudo apt-get clean \
+    && sudo rm -rf /var/lib/apt/lists/*
