@@ -61,6 +61,7 @@ RUN set -x \
     && anyenv install nodenv \
     && exec $SHELL -l
 
+# basic dependent libs
 RUN set -x \
     && sudo apt-get update \
     && sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
@@ -83,3 +84,10 @@ RUN set -x \
 RUN set -x \
     && eval "$(anyenv init -)" \
     && npm install -g yarn http-server
+
+# rails dependent libs
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
