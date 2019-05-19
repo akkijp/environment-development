@@ -1,11 +1,10 @@
 version: '3.6'
 
 services:
-  rails:
+  development:
     image: rorono/development:0.0.6
-    container_name: rails
+    container_name: development
     ports:
       - 3000:3000
     volumes:
-      - ./starterkit:/starterkit:cached
-    command: /bin/bash -c "cd /starterkit && /home/developer/.anyenv/envs/rbenv/shims/foreman start"
+      - ./share:/home/developer/share
