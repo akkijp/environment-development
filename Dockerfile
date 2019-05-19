@@ -23,8 +23,7 @@ RUN set -x \
     && rm -rf /var/lib/apt/lists/*
 
 # add sudo user
-RUN groupadd --gid 65534 ${USER} && \
-    useradd  --uid 65534 --gid 65534 --groups sudo --create-home --shell $SHELL ${USER} && \
+RUN useradd  --uid 1000 --gid 65534 --groups sudo --create-home --shell $SHELL ${USER} && \
     echo "${USER}:P@ssw0rd" | chpasswd
 
 RUN echo 'Defaults visiblepw'            >> /etc/sudoers
