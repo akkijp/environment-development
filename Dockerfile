@@ -39,6 +39,8 @@ RUN set -x \
 USER ${USER}
 WORKDIR $HOME
 
+ADD ./docker-entrypoint.sh $HOME
+
 # install linuxbrew
 RUN set -x \
     && git clone https://github.com/Homebrew/brew $HOME/.linuxbrew/Homebrew \
@@ -91,3 +93,7 @@ RUN set -x \
     && sudo apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
     && sudo apt-get clean \
     && sudo rm -rf /var/lib/apt/lists/*
+
+EXPOSE 3000 8080
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
