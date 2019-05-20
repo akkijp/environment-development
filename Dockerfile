@@ -38,7 +38,7 @@ RUN set -x \
 USER ${USER}
 WORKDIR $HOME
 
-ADD ./docker-entrypoint.sh $HOME
+ADD docker-entrypoint.sh /usr/local/bin
 
 # install linuxbrew
 RUN set -x \
@@ -95,4 +95,4 @@ RUN set -x \
 
 EXPOSE 3000 8080
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
