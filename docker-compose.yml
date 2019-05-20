@@ -7,4 +7,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./share:/home/developer/share
+      - ./share:/share
+    environment:
+      - LOCAL_UID=$(id -u $USER)
+      - LOCAL_GID=$(id -g $USER)

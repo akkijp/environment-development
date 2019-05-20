@@ -18,7 +18,7 @@ RUN set -x \
 # apt update
 RUN set -x \
     && apt-get update \
-    && apt-get install -y sudo \
+    && apt-get install -y sudo gosu \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -29,11 +29,27 @@ RUN useradd  --uid 1000 --gid 65534 --groups sudo --create-home --shell $SHELL $
 RUN echo 'Defaults visiblepw'            >> /etc/sudoers
 RUN echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+# bisic dependent libs
 RUN set -x \
     && apt-get update \
     && apt-get install -y build-essential cmake file git curl wget ruby vim zsh \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# basic development dependent libs
+RUN set -x \
+    && sudo apt-get update \
+    && sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
+    && sudo apt-get clean \
+    && sudo rm -rf /var/lib/apt/lists/*
+
+# rails development dependent libs
+RUN set -x \
+    && sudo apt-get update \
+    && sudo apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
+    && sudo apt-get clean \
+    && sudo rm -rf /var/lib/apt/lists/*
+
 
 USER ${USER}
 WORKDIR $HOME
@@ -62,13 +78,6 @@ RUN set -x \
     && anyenv install nodenv \
     && exec $SHELL -l
 
-# basic dependent libs
-RUN set -x \
-    && sudo apt-get update \
-    && sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
-    && sudo apt-get clean \
-    && sudo rm -rf /var/lib/apt/lists/*
-
 RUN set -x \
     && eval "$(anyenv init -)" \
     && rbenv install 2.6.3 \
@@ -85,13 +94,6 @@ RUN set -x \
 RUN set -x \
     && eval "$(anyenv init -)" \
     && npm install -g yarn http-server
-
-# rails dependent libs
-RUN set -x \
-    && sudo apt-get update \
-    && sudo apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
-    && sudo apt-get clean \
-    && sudo rm -rf /var/lib/apt/lists/*
 
 EXPOSE 3000 8080
 
