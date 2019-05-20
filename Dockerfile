@@ -23,7 +23,8 @@ RUN set -x \
     && rm -rf /var/lib/apt/lists/*
 
 # add sudo user
-RUN useradd  --uid 1000 --gid 65534 --groups sudo --create-home --shell $SHELL ${USER} && \
+RUN groupadd --gid 1000 ${USER} && \
+    useradd  --uid 1000 --gid 1000 --groups sudo --create-home --shell $SHELL ${USER} && \
     echo "${USER}:P@ssw0rd" | chpasswd
 
 RUN echo 'Defaults visiblepw'            >> /etc/sudoers
@@ -38,17 +39,17 @@ RUN set -x \
 
 # basic development dependent libs
 RUN set -x \
-    && sudo apt-get update \
-    && sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
-    && sudo apt-get clean \
-    && sudo rm -rf /var/lib/apt/lists/*
+    && apt-get update \
+    && apt-get install -y libssl-dev libreadline-dev zlib1g-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # rails development dependent libs
 RUN set -x \
-    && sudo apt-get update \
-    && sudo apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
-    && sudo apt-get clean \
-    && sudo rm -rf /var/lib/apt/lists/*
+    && apt-get update \
+    && apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 
 USER ${USER}
