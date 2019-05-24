@@ -77,6 +77,7 @@ RUN set -x \
 RUN set -x \
     && anyenv install rbenv \
     && anyenv install nodenv \
+    && anyenv install goenv \
     && exec $SHELL -l
 
 RUN set -x \
@@ -85,7 +86,7 @@ RUN set -x \
     && rbenv global 2.6.3 \
     && nodenv install 12.1.0 \
     && nodenv global 12.1.0 \
-    && goenv global 1.12.5 \
+    && goenv install 1.12.5 \
     && goenv global 1.12.5
 
 # ruby package install
