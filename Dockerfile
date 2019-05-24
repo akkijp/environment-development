@@ -84,7 +84,9 @@ RUN set -x \
     && rbenv install 2.6.3 \
     && rbenv global 2.6.3 \
     && nodenv install 12.1.0 \
-    && nodenv global 12.1.0
+    && nodenv global 12.1.0 \
+    && goenv global 1.12.5 \
+    && goenv global 1.12.5
 
 # ruby package install
 RUN set -x \
@@ -96,6 +98,14 @@ RUN set -x \
     && eval "$(anyenv init -)" \
     && npm install -g yarn http-server
 
+# golang package install
+RUN set -x \
+    && eval "$(anyenv init -)" \
+    && go get -u github.com/ddollar/forego
+ENV PATH $HOME/go/bin:$PATH
+ENV PATH $HOME/go/1.12.5/bin:$PATH
+
 EXPOSE 3000 8080
 
 ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["/bin/bash"]

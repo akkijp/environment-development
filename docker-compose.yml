@@ -2,12 +2,10 @@ version: '3.6'
 
 services:
   development:
-    image: rorono/development:0.0.6
+    image: rorono/development:latest
     container_name: development
     ports:
       - 3000:3000
+      - 8080:8080
     volumes:
       - ./share:/share
-    environment:
-      - LOCAL_UID=$(id -u $USER)
-      - LOCAL_GID=$(id -g $USER)
