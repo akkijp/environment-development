@@ -33,7 +33,14 @@ RUN echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # bisic dependent libs
 RUN set -x \
     && apt-get update \
-    && apt-get install -y build-essential cmake file git curl wget ruby vim zsh \
+    && apt-get install -y build-essential cmake file git curl wget ruby vim zsh python \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# python3 development dependent libs
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y libffi-dev libbz2-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -50,6 +57,8 @@ RUN set -x \
     && apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+
 
 
 USER ${USER}
