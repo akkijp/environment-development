@@ -82,8 +82,10 @@ RUN set -x \
 
 RUN set -x \
     && eval "$(anyenv init -)" \
+    && rbenv install 2.5.1 \
     && rbenv install 2.6.3 \
     && rbenv global 2.6.3 \
+    && nodenv install 8.11.3 \
     && nodenv install 12.1.0 \
     && nodenv global 12.1.0 \
     && goenv install 1.12.5 \
