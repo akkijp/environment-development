@@ -1,2 +1,3 @@
-starterkit/
+share/
+.env
 .DS_Store

@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   development:
-    image: rorono/development:latest
+    image: rorono/development:0c15c47
     container_name: development
     ports:
       - 3000:3000
