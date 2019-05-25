@@ -1,0 +1,3 @@
+[submodule "share/app-pacify-v1"]
+	path = share/app-pacify-v1
+	url = git@github.com:rorono/app-pacify-v1.git
