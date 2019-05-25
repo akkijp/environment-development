@@ -1,2 +1,5 @@
 build:
-	@docker build -t developenv .
+	@./bin/docker-build.sh
+
+push:
+	@./bin/docker-push.sh
