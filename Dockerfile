@@ -33,7 +33,7 @@ RUN echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # bisic dependent libs
 RUN set -x \
     && apt-get update \
-    && apt-get install -y build-essential cmake file git curl wget ruby vim zsh python \
+    && apt-get install -y build-essential cmake file git curl wget ruby vim zsh python mysql-client \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -57,7 +57,6 @@ RUN set -x \
     && apt-get install -y libsqlite3-dev default-libmysqlclient-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
 
 
 
@@ -92,23 +91,19 @@ RUN set -x \
 RUN set -x \
     && eval "$(anyenv init -)" \
     && rbenv install 2.5.1 \
+    && rbenv global 2.5.1 \
+    && gem install rails bundler foreman \
     && rbenv install 2.6.3 \
     && rbenv global 2.6.3 \
+    && gem install rails bundler foreman \
     && nodenv install 8.11.3 \
+    && nodenv global 8.11.3 \
+    && npm install -g yarn http-server \
     && nodenv install 12.1.0 \
     && nodenv global 12.1.0 \
+    && npm install -g yarn http-server \
     && goenv install 1.12.5 \
     && goenv global 1.12.5
-
-# ruby package install
-RUN set -x \
-    && eval "$(anyenv init -)" \
-    && gem install rails bundler foreman
-
-# node package install
-RUN set -x \
-    && eval "$(anyenv init -)" \
-    && npm install -g yarn http-server
 
 # golang package install
 RUN set -x \
