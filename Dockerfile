@@ -112,7 +112,7 @@ RUN set -x \
 ENV PATH $HOME/go/bin:$PATH
 ENV PATH $HOME/go/1.12.5/bin:$PATH
 
-EXPOSE 3000 8080
+EXPOSE 3000 3035 8080
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["/bin/bash"]

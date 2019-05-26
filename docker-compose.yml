@@ -6,12 +6,16 @@ services:
     container_name: development
     ports:
       - 3000:3000
+      - 3035:3035
       - 8080:8080
     volumes:
       - ./share:/share
+    tty: true
     links:
       - mysql
 
   mysql:
     image: mariadb:10.4.5
     container_name: mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
