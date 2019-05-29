@@ -58,4 +58,42 @@ RUN set -x \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+
+
+USER ${USER}
+WORKDIR $HOME
+
+# install linuxbrew
+RUN set -x \
+    && git clone https://github.com/Homebrew/brew $HOME/.linuxbrew/Homebrew \
+    && mkdir $HOME/.linuxbrew/bin \
+    && ln -s ../Homebrew/bin/brew $HOME/.linuxbrew/bin \
+    && eval $($HOME/.linuxbrew/bin/brew shellenv)
+ENV PATH $HOME/.linuxbrew/bin:$PATH
+
+# setup anyenv
+RUN set -x \
+    && git clone https://github.com/anyenv/anyenv $HOME/.anyenv
+ENV PATH $HOME/.anyenv/bin:$PATH
+
+RUN set -x \
+    && echo 'eval "$(anyenv init -)"' >> $HOME/.bashrc \
+    && anyenv install --force-init
+
+RUN set -x \
+    && anyenv install rbenv \
+    && anyenv install nodenv \
+    && anyenv install goenv \
+    && exec $SHELL -l
+
+RUN set -x \
+    && eval "$(anyenv init -)" \
+    && rbenv install 2.6.3 \
+    && rbenv global 2.6.3 \
+    && gem install rails bundler foreman \
+    && nodenv install 12.1.0 \
+    && nodenv global 12.1.0 \
+    && npm install -g yarn http-server
+
+ADD docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
