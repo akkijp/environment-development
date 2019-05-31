@@ -63,6 +63,10 @@ RUN set -x \
 USER ${USER}
 WORKDIR $HOME
 
+RUN set -x \
+    && sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" \
+    && sudo chown -R ${USER}:${USER} $HOME
+
 # install linuxbrew
 RUN set -x \
     && git clone https://github.com/Homebrew/brew $HOME/.linuxbrew/Homebrew \
