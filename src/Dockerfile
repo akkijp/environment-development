@@ -72,8 +72,6 @@ WORKDIR $HOME
 RUN set -x \
     && sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" \
     && sudo chown -R ${USER}:${USER} $HOME
-ADD .zshrc $HOME
-ADD .profile $HOME
 
 # install linuxbrew
 RUN set -x \
@@ -107,5 +105,7 @@ RUN set -x \
     && nodenv global 12.1.0 \
     && npm install -g yarn http-server
 
+ADD .zshrc $HOME
+ADD .profile $HOME
 ADD docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
