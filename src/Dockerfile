@@ -33,7 +33,7 @@ RUN echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # bisic dependent libs
 RUN set -x \
     && apt-get update \
-    && apt-get install -y build-essential cmake file git curl wget ruby vim zsh python mysql-client \
+    && apt-get install -y build-essential cmake file git curl wget ruby vim zsh python mysql-client bash-completion \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
