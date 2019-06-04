@@ -106,5 +106,6 @@ RUN set -x \
     && npm install -g yarn http-server
 
 ADD .zshrc $HOME
+ADD .bashrc $HOME
 ADD docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
