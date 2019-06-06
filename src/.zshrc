@@ -102,5 +102,5 @@ source $ZSH/oh-my-zsh.sh
 # anyenv configuration
 if [ -d $HOME/.anyenv ] ; then
     export PATH="$HOME/.anyenv/bin:$PATH"
-    eval "$(rbenv init - zsh)"
+    eval "$(anyenv init - zsh)"
 fi
