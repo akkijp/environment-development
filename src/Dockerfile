@@ -105,7 +105,7 @@ RUN set -x \
     && nodenv global 12.1.0 \
     && npm install -g yarn http-server
 
-ADD .zshrc $HOME
-ADD .bashrc $HOME
+ADD --chown=developer:developer .zshrc $HOME
+ADD --chown=developer:developer .bashrc $HOME
 ADD docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
